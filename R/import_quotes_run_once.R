@@ -99,3 +99,11 @@ characters_words %>%
 ## RUN ONCE:
 # write_csv(characters_words, "raw_data/characters_words.csv")
 
+characters_words %>% 
+  filter(series != "TOS") %>% 
+  group_by(character, series) %>% 
+  add_tally(total_words) %>%
+  filter(n > 50000) %>% 
+  filter(character %in% c("ARCHER", "JANEWAY", "PICARD", "KIRK", "SISKO")) %>% 
+  ggplot(aes(x = character, y = total_words)) + 
+  geom_boxplot()
