@@ -63,3 +63,8 @@ ggplot(riding_tibble, aes(x = destination_addresses, y = riding_time/3600)) +
   ylab("Time [hr]") +
   theme_bw() + 
   coord_flip()
+
+
+# NOTICE ------------------------------------------------------------------
+
+# In practice, if it's a common API, there's a package for it. E.g.: `mapsapi` and `gmapsdistance`
