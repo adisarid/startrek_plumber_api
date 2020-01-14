@@ -17,6 +17,7 @@
 #
 
 library(plumber)
+library(tidyverse)
 
 source("R/get_startrek_quote.R") # the actual data set we're using and the functions
 
@@ -26,7 +27,8 @@ source("R/get_startrek_quote.R") # the actual data set we're using and the funct
 #* @param character_fl The character you want, e.g., PICARD, DATA, WORF, SISKO, etc.
 #* @param series_fl The series you want (the 3 letter abbreviation, i.e., TNG, DS9, VOY, TOS, ENT)
 #* @get /startrekquote
-function(character_fl = "PICARD", series_fl = c("TNG", "DS9", "VOY", "TOS", "ENT")){
+function(character_fl = unique(startrek_ref$character), 
+         series_fl = unique(startrek_ref$series)){
   
   selected_quote <- get_random_quote(str_to_upper(character_fl), str_to_upper(series_fl))
   
