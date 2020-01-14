@@ -33,10 +33,8 @@ function(character_fl = "PICARD", series_fl = c("TNG", "DS9", "VOY", "TOS", "ENT
   if (is.na(selected_quote)){
     return(list(error = "No quotes with this combination, or invalid parameters."))
   } else {
-    plumber::forward()
+    selected_quote
   }
-  
-  selected_quote
   
 }
 
