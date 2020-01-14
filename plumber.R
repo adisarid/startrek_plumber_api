@@ -27,13 +27,14 @@ source("R/get_startrek_quote.R") # the actual data set we're using and the funct
 #* @param character_fl The character you want, e.g., PICARD, DATA, WORF, SISKO, etc.
 #* @param series_fl The series you want (the 3 letter abbreviation, i.e., TNG, DS9, VOY, TOS, ENT)
 #* @get /startrekquote
-function(character_fl = unique(startrek_ref$character), 
+function(res, req, character_fl = unique(startrek_ref$character), 
          series_fl = unique(startrek_ref$series)){
   
   selected_quote <- get_random_quote(str_to_upper(character_fl), str_to_upper(series_fl))
   
   if (is.na(selected_quote)){
-    return(list(error = "No quotes with this combination, or invalid parameters."))
+    res$status <- 400
+    return(list(error="No quotes with this combination, or invalid parameters."))
   } else {
     selected_quote
   }
